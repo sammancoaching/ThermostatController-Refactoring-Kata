@@ -40,4 +40,5 @@ function(ADD_CMOCKA_TEST_ENVIRONMENT _TARGET_NAME)
     endif ()
 endfunction()
 
-add_subdirectory(hvac_test)
+add_subdirectory(hvac_test_with_mock)
+add_subdirectory(hvac_test_with_spy)
