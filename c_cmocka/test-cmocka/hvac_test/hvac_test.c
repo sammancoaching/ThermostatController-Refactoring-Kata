@@ -5,6 +5,16 @@
 
 #include "HVAC.h"
 
+float __wrap_HVAC_get_desired_temperature()
+{
+    return mock_type(float);
+}
+
+float __wrap_HVAC_get_current_temperature()
+{
+    return mock_type(float);
+}
+
 static void test_something(void **state)
 {
     assert_int_equal(42, 4);
