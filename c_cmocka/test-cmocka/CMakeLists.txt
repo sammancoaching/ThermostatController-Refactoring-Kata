@@ -42,3 +42,4 @@ endfunction()
 
 add_subdirectory(hvac_test_with_mock)
 add_subdirectory(hvac_test_with_spy)
+add_subdirectory(hvac_test_with_fake)
