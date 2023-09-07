@@ -1,7 +1,7 @@
 project(hvac_test C)
 
 add_cmocka_test(hvac_test_fake
-        SOURCES hvac_test.c
+        SOURCES hvac_test.c hvac_fake.c
         LINK_LIBRARIES src cmocka-static)
 add_cmocka_test_environment(add_test)
 
