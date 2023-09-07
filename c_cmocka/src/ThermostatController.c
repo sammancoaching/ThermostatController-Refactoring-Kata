@@ -21,16 +21,16 @@ bool regulate_temperature()
     {
         // exercise - see instructionsadd
         // replace these two lines with the commented out lines below
-        HVAC_set_heater(false);
-        HVAC_set_cooler(true);
-
 //        HVAC_set_heater(false);
-//        if (HVAC_get_current_temperature() < 24) {
-//            HVAC_set_cooler(false);
-//            return false;
-//        }  else {
-//            HVAC_set_cooler(true);
-//        }
+//        HVAC_set_cooler(true);
+
+        HVAC_set_heater(false);
+        if (HVAC_get_current_temperature() < 24) {
+            HVAC_set_cooler(false);
+            return false;
+        }  else {
+            HVAC_set_cooler(true);
+        }
     }
     else
     {

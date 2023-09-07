@@ -48,7 +48,7 @@ static void test_regulate_temperature_too_hot(void **state)
     expect_function_call(__wrap_HVAC_set_heater);
     expect_function_call(__wrap_HVAC_set_cooler);
     will_return(__wrap_HVAC_get_desired_temperature, 23);
-    will_return(__wrap_HVAC_get_current_temperature, 27);
+    will_return_always(__wrap_HVAC_get_current_temperature, 27);
     expect_value(__wrap_HVAC_set_heater, active, false);
     expect_value(__wrap_HVAC_set_cooler, active, true);
 
@@ -71,12 +71,27 @@ static void test_regulate_temperature_ok(void **state)
     assert_true(result);
 }
 
+static void test_regulate_temperature_legal_limit(void **state)
+{
+    expect_function_call(__wrap_HVAC_set_heater);
+    expect_function_call(__wrap_HVAC_set_cooler);
+    will_return(__wrap_HVAC_get_desired_temperature, 20);
+    will_return_always(__wrap_HVAC_get_current_temperature, 23);
+    expect_value(__wrap_HVAC_set_heater, active, false);
+    expect_value(__wrap_HVAC_set_cooler, active, false);
+
+    bool result = regulate_temperature();
+
+    assert_false(result);
+}
+
 int main(void) {
     const struct CMUnitTest tests[] =
             {
             cmocka_unit_test(test_regulate_temperature_too_cold),
             cmocka_unit_test(test_regulate_temperature_too_hot),
             cmocka_unit_test(test_regulate_temperature_ok),
+            cmocka_unit_test(test_regulate_temperature_legal_limit),
             };
 
     return cmocka_run_group_tests(tests, NULL, NULL);

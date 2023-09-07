@@ -12,6 +12,7 @@ void HVAC_fake_set_cooler(bool active);
 void HVAC_fake_init();
 bool HVAC_fake_get_heater();
 bool HVAC_fake_get_cooler();
+
 void HVAC_fake_set_desired_temperature(float value);
 void HVAC_fake_set_current_temperature(float value);
 
