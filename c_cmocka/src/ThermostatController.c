@@ -8,7 +8,7 @@
 //Uses
 #include "HVAC.h"
 
-void regulate_temperature()
+bool regulate_temperature()
 {
     float desired_temperature = HVAC_get_desired_temperature();
     float current_temperature = HVAC_get_current_temperature();
@@ -27,6 +27,7 @@ void regulate_temperature()
         HVAC_set_heater(false);
         HVAC_set_cooler(false);
     }
+    return true;
 }
 
 

@@ -39,7 +39,9 @@ static void test_regulate_temperature_too_cold(void **state)
     expect_value(__wrap_HVAC_set_heater, active, true);
     expect_value(__wrap_HVAC_set_cooler, active, false);
 
-    regulate_temperature();
+    bool result = regulate_temperature();
+
+    assert_true(result);
 }
 static void test_regulate_temperature_too_hot(void **state)
 {
@@ -50,7 +52,9 @@ static void test_regulate_temperature_too_hot(void **state)
     expect_value(__wrap_HVAC_set_heater, active, false);
     expect_value(__wrap_HVAC_set_cooler, active, true);
 
-    regulate_temperature();
+    bool result = regulate_temperature();
+
+    assert_true(result);
 }
 
 static void test_regulate_temperature_ok(void **state)
@@ -62,7 +66,9 @@ static void test_regulate_temperature_ok(void **state)
     expect_value(__wrap_HVAC_set_heater, active, false);
     expect_value(__wrap_HVAC_set_cooler, active, false);
 
-    regulate_temperature();
+    bool result = regulate_temperature();
+
+    assert_true(result);
 }
 
 int main(void) {

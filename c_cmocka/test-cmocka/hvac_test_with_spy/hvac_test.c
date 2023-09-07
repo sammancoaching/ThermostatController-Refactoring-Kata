@@ -38,8 +38,9 @@ static void test_regulate_temperature_too_cold(void **state)
     will_return(__wrap_HVAC_get_desired_temperature, 23);
     will_return(__wrap_HVAC_get_current_temperature, 20);
 
-    regulate_temperature();
+    bool result = regulate_temperature();
 
+    assert_true(result);
     assert_int_equal(true, heater_active);
     assert_int_equal(false, cooler_active);
 }
@@ -51,8 +52,9 @@ static void test_regulate_temperature_too_hot(void **state)
     will_return(__wrap_HVAC_get_desired_temperature, 23);
     will_return(__wrap_HVAC_get_current_temperature, 27);
 
-    regulate_temperature();
+    bool result = regulate_temperature();
 
+    assert_true(result);
     assert_int_equal(false, heater_active);
     assert_int_equal(true, cooler_active);
 }
@@ -65,8 +67,9 @@ static void test_regulate_temperature_ok(void **state)
     will_return(__wrap_HVAC_get_desired_temperature, 23);
     will_return(__wrap_HVAC_get_current_temperature, 23);
 
-    regulate_temperature();
+    bool result = regulate_temperature();
 
+    assert_true(result);
     assert_int_equal(false, heater_active);
     assert_int_equal(false, cooler_active);
 }
